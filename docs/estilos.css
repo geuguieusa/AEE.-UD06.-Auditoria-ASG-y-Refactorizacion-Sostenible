@@ -157,3 +157,4 @@ footer a { color: var(--text-muted); }
 
 .btn-cookie:hover { background: #ffbf00; border-color: #ffbf00; }
 
+.cookie-toggle:checked ~ #cookie-banner { display: none; }
