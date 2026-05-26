@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kebab Cavaleri (C. Atenea 12, Sevilla). Pide tu Döner, Durum o bandeja para recoger. Reseñas 3,9 sobre 5.">
+  <title>Kebab Cavaleri — Pide para recoger en Sevilla</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <input type="checkbox" id="cookie-ok" class="cookie-toggle">
+  <aside id="cookie-banner" role="region" aria-label="Aviso de cookies">
+    <p>Usamos solo cookies esenciales para que la web funcione. No hay seguimiento.</p>
+    <label for="cookie-ok" class="btn-cookie">Entendido ✓</label>
+  </aside>
+
+  <header>
+    <h1>Kebab Cavaleri</h1>
+    <p>El mejor kebab de tu vida · Reseñas 3,9 (541 opiniones)</p>
+    <nav aria-label="Principal">
+      <a href="#carta">Carta</a>
+      <a href="#pedido">Pedido</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="imagen-destacada" aria-labelledby="hero-title">
+      <h2 id="hero-title" class="visually-hidden">Imagen del plato</h2>
+      <picture>
+        <source type="image/avif"
+                srcset="img/doner-400.avif 400w, img/doner-800.avif 800w"
+                sizes="(max-width: 600px) 100vw, 800px">
+        <source type="image/webp"
+                srcset="img/doner-400.webp 400w, img/doner-800.webp 800w"
+                sizes="(max-width: 600px) 100vw, 800px">
+        <img src="img/doner-800.webp"
+             alt="Plato de Döner Kebab con lechuga, tomate y salsa blanca sobre pan recién hecho"
+             width="800" height="533"
+             fetchpriority="high"
+             decoding="async">
+      </picture>
+    </section>
+
+    <section id="carta" aria-labelledby="carta-title">
+      <h2 id="carta-title">Nuestros platos estrella (1 – 10 €)</h2>
+      <ul>
+        <li><strong>Bandeja de patatas con pollo y salsa</strong> — la elección ganadora.</li>
+        <li><strong>Durum especial (4,5 €)</strong> — del tamaño de tu cabeza.</li>
+        <li><strong>Durum especial gratinado (6 €)</strong></li>
+      </ul>
+    </section>
+
+    <section id="pedido" aria-labelledby="form-title">
+      <form action="mailto:pedidos@kebabcavaleri.example"
+            method="post"
+            enctype="text/plain">
+
+        <h2 id="form-title">Haz tu pedido para recoger <small>(C. Atenea 12)</small></h2>
+
+        <div class="form-group">
+          <label for="nombre">Nombre para el pedido</label>
+          <input type="text" id="nombre" name="nombre"
+                 autocomplete="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pedido">Detalle de tu pedido</label>
+          <textarea id="pedido" name="pedido" rows="3"
+                    aria-describedby="pedido-help" required></textarea>
+          <small id="pedido-help">Ej: 1 Durum especial + 1 bandeja de patatas con pollo.</small>
+        </div>
+
+        <button type="submit">Enviar pedido</button>
+      </form>
+
+      <p class="alt-contact">
+        ¿Prefieres llamar? <a href="tel:+34955515876">955 51 58 76</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <a href="tel:+34955515876">955 51 58 76</a> ·
+      Apertura: 12:30 ·
+      <a href="politica-privacidad.html">Política de privacidad</a> ·
+    </p>
+    <p class="green-note">
+      Esta web no usa cookies de seguimiento ni scripts de terceros.
+    </p>
+  </footer>
+
+</body>
+</html>
