@@ -1,10 +1,14 @@
 # Auditoría ASG — Kebab Cavaleri
 
 > **Módulo:** Sostenibilidad Aplicada a los Sectores Productivos
+>
 > **Autor:** *Guillermo Eugui Sánchez*  
 > **Autor:** *Joseluis Segura*
+>
 > **Docente:** *Willman Acosta Lugo*
-> **URL auditada:** <https://geuguieusa.github.io/AEE.-UD06.-Auditoria-ASG-y-Refactorizacion-Sostenible/>  
+>
+> **URL auditada:** <https://geuguieusa.github.io/AEE.-UD06.-Auditoria-ASG-y-Refactorizacion-Sostenible/>
+>
 > **Fecha:** 05/05/2026
 
 ---
