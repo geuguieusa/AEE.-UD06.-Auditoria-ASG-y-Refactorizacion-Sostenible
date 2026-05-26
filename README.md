@@ -1,8 +1,9 @@
 # Auditoría ASG — Kebab Cavaleri
 
-> **Módulo:** Sostenibilidad Aplicada al Sistema Productivo · UD06 · RA6  
+> **Módulo:** Sostenibilidad Aplicada a los Sectores Productivos
 > **Autor:** *Guillermo Eugui Sánchez*  
-> **Autor:** *Joseluis Segura*  
+> **Autor:** *Joseluis Segura*
+> **Docente:** *Willman Acosta Lugo*
 > **URL auditada:** <https://geuguieusa.github.io/AEE.-UD06.-Auditoria-ASG-y-Refactorizacion-Sostenible/index.html/>  
 > **Fecha:** 05/05/2026
 
@@ -30,13 +31,13 @@ Datos reales medidos del servidor:
 
 ### Identificación de bloatware (top 3 recursos)
 
-1. **`doner_kebab.webp` (48 KB)** — imagen servida a 800 px en todos los dispositivos, sin `srcset`. Además lleva `loading="lazy"` siendo la imagen principal (*hero*), lo que retrasa su carga en lugar de mejorarla.
-2. **CSS embebido en `<head>` (~3 KB)** — no es cacheable entre páginas; se descarga de nuevo en cada visita.
+1. **`doner_kebab.webp` (48 KB)** — imagen subida a 800 px en todos los dispositivos, sin `srcset`. Además lleva un `loading="lazy"` y al ser la imagen principal [*hero*], retrasa su carga en lugar de mejorarla.
+2. **CSS embebido en `<head>` (~3 KB)** — no es cacheable entre páginas, se descarga de nuevo en cada visita.
 3. **JS inline (`onclick`, `onsubmit`)** — no se cachea y bloquea el parser del navegador, aunque ocupe pocos bytes.
 
 ### ¿Inflación de software?
 
-La web no carga frameworks ni trackers externos, lo cual es muy bueno. Pero aplica atributos sin entenderlos (`loading="lazy"` en el hero) y ejecuta JavaScript para un banner de cookies que ni siquiera guarda la decisión del usuario — trabajo computacional sin valor real.
+La web no carga frameworks ni trackers externos, lo cual es muy bueno. Pero aplica atributos sin entenderlos (`loading="lazy"` en el hero) y ejecuta el JavaScript para un banner de cookies que ni siquiera guarda la decisión del usuario — trabajo computacional sin valor real.
 
 ---
 
@@ -50,7 +51,7 @@ La web no carga frameworks ni trackers externos, lo cual es muy bueno. Pero apli
 ### Barreras detectadas
 
 **Barrera 1 — Contraste insuficiente en el footer (WCAG 1.4.3 AA)**  
-`color: #666666` sobre `background: #f4f4f4` → ratio **4,13:1**, por debajo del mínimo de 4,5:1. El teléfono y el horario son ilegibles para personas con baja visión.
+`color: #666666` sobre `background: #f4f4f4` → ratio **4,13:1**, por debajo del mínimo de 4,5:1. El teléfono y el horario son ilegibles para personas con poca visión.
 
 **Barrera 2 — Orden de encabezados ilógico (WCAG 1.3.1)**  
 El `<h2>` del banner de cookies aparece en el DOM **antes** del `<h1>` de la página. Un lector de pantalla (usado por personas ciegas) anuncia el banner como sección principal antes de presentar el restaurante.
@@ -66,13 +67,12 @@ No hay enlace de salto al contenido principal ni elemento `<nav>`. Un usuario qu
 
 ### Transparencia y dark patterns
 
-- **El banner de cookies es ficticio:** ambos botones solo ocultan el `<div>` con `display:none`. No se guarda ninguna preferencia → incumple el RGPD (art. 4.11) y la Guía de Cookies de la AEPD 2023.
+- **El banner de cookies es ficticio:** los dos botones solo ocultan el `<div>` con `display:none`. No se guarda ninguna preferencia → incumple el RGPD (art. 4.11) y la Guía de Cookies de la AEPD 2023.
 - **Dark pattern visual:** el botón "Aceptar todas" va relleno en negro y "Rechazar" en transparente. Mismo sitio, distinto peso visual — la AEPD exige igualdad entre ambas opciones.
-- **Sin Política de Privacidad ni Aviso Legal** — obligatorio por LSSI-CE art. 10 para cualquier web comercial española.
 
 ### Datos innecesarios
 
-El formulario pide solo nombre y detalle del pedido: correcto, cumple el principio de minimización (RGPD art. 5.1.c). Sin embargo, hay un checkbox de "ofertas por email" **sin campo de email** — incoherente e inútil legalmente.
+El formulario pide solo nombre y detalle del pedido: correcto, cumple el principio de minimización (RGPD art. 5.1.c). Pero hay un checkbox de "ofertas por email" **sin campo de email** — incoherente e inútil legalmente.
 
 ---
 
@@ -80,7 +80,7 @@ El formulario pide solo nombre y detalle del pedido: correcto, cumple el princip
 
 ### 4.1 Mejoras ambientales (A)
 
-- **Formato de imagen:** sustituir imagen única por `<picture>` con variantes WebP + AVIF a 400 px (móvil) y 800 px (escritorio). El navegador descarga solo la que necesita.
+- **Formato de imagen:** sustituir imagen única por `<picture>` formato AVIF a 400 px (móvil) y 800 px (escritorio). El navegador descarga solo la que necesita.
 - **`loading="lazy"` solo en imágenes fuera de pantalla.** La imagen hero lleva `fetchpriority="high"` para que cargue lo antes posible.
 - **CSS externo y cacheable:** mover los estilos a `styles.css` enlazado con `<link>`. El navegador lo cachea y no lo vuelve a descargar.
 - **Eliminar el JS inline:** todo el JavaScript era para el banner de cookies. Al eliminarlo, la web funciona con **0 líneas de JavaScript**.
@@ -88,14 +88,14 @@ El formulario pide solo nombre y detalle del pedido: correcto, cumple el princip
 ### 4.2 Mejoras sociales (S)
 
 - Añadir `<nav aria-label="Principal">` y un skip-link al `<main>`.
-- Corregir contraste del footer: `#666` → `#595959` (ratio 7,0:1 ✅ AAA).
+- Corregir contraste del footer: `#666` → `#595959`.
 - Sustituir `<input type="text">` del pedido por `<textarea>` con `aria-describedby`.
 - Asegurar que el primer encabezado del DOM es el `<h1>` de la página.
 
 ### 4.3 Mejoras de gobernanza (G)
 
 - **Solución más sostenible y ética:** eliminar el banner de cookies porque la web no usa trackers ni scripts de terceros. Sin cookies de seguimiento, no hay nada que consentir (RGPD art. 25 — privacy by design).
-- Publicar **Política de Privacidad** y **Aviso Legal** en páginas propias.
+- Publicar **Política de Privacidad** en las páginas propias.
 - Eliminar el checkbox de marketing sin campo de email.
 
 ### 4.4 Propuesta técnica — antes vs. después
@@ -119,10 +119,10 @@ El formulario pide solo nombre y detalle del pedido: correcto, cumple el princip
 **Contraste footer:**
 ```css
 /* ANTES — falla WCAG AA */
-footer { color: #666666; }  /* ratio 4,13:1 ❌ */
+footer { color: #666666; }  /* ratio 4,13:1 */
 
 /* DESPUÉS — supera WCAG AAA */
-footer { color: #595959; }  /* ratio 7,0:1  ✅ */
+footer { color: #595959; }  /* ratio 7,0:1  */
 ```
 
 **Comparativa de resultados:**
@@ -130,12 +130,10 @@ footer { color: #595959; }  /* ratio 7,0:1  ✅ */
 | Métrica | Antes | Después |
 |---|---|---|
 | Peso en móvil | 54 KB | ~28 KB (-48%) |
-| JavaScript | 5 líneas inline | **0 líneas** |
-| Contraste footer | 4,13:1 ❌ | 7,0:1 ✅ |
-| Cookies RGPD | Banner ficticio | No necesario |
+| JavaScript | 5 líneas inline | 0 líneas |
+| Contraste footer | 4,13:1  | 7,0:1  |
+| Cookies RGPD | Banner ficticio | No es necesario |
 | Política de privacidad | No existe | Publicada |
-
-**Herramientas usadas:** Lighthouse, Website Carbon Calculator, WAVE, DevTools Network, WebAIM Contrast Checker.
 
 ### Reflexión — Paradoja de Jevons
 
