@@ -4,7 +4,7 @@
 > **Autor:** *Guillermo Eugui Sánchez*  
 > **Autor:** *Joseluis Segura*
 > **Docente:** *Willman Acosta Lugo*
-> **URL auditada:** <https://geuguieusa.github.io/AEE.-UD06.-Auditoria-ASG-y-Refactorizacion-Sostenible/index.html/>  
+> **URL auditada:** <https://geuguieusa.github.io/AEE.-UD06.-Auditoria-ASG-y-Refactorizacion-Sostenible/>  
 > **Fecha:** 05/05/2026
 
 ---
